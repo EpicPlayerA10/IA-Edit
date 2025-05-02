@@ -50,7 +50,7 @@ public class CustomBlocksWorldEditUtils {
             CompoundTag entity = (CompoundTag) spawnData.getValue().get("entity");
             List<CompoundTag> armorItems = entity.getList("ArmorItems", CompoundTag.class);
             CompoundTag itemNbt = armorItems.get(3);
-            Map<String, Tag> itemNbtMap = itemNbt.getValue();
+            Map<String, Tag<?, ?>> itemNbtMap = itemNbt.getValue();
 
             if (!itemNbtMap.containsKey("id") || !itemNbtMap.containsKey("tag")) return null;
 

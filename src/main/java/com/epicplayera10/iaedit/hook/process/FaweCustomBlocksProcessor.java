@@ -75,6 +75,6 @@ public class FaweCustomBlocksProcessor implements IBatchProcessor {
 
     @Override
     public ProcessorScope getScope() {
-        return ProcessorScope.READING_SET_BLOCKS;
+        return ProcessorScope.READING_BLOCKS;
     }
 }

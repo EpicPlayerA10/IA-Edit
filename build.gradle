@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id "com.gradleup.shadow" version "8.3.6"
 }
 
 group = 'com.epicplayera10'
@@ -16,29 +17,37 @@ repositories {
         url = "https://oss.sonatype.org/content/groups/public/"
     }
 
-    maven { url = uri("https://repo.papermc.io/repository/maven-public/") }
+    // FAWE
+    maven { url = uri("https://maven.enginehub.org/repo/") }
 
+    // ItemsAdder
     maven {
-        url 'https://jitpack.io'
+        url 'https://maven.devs.beer/'
     }
-
-    //maven { url 'https://maven.enginehub.org/repo/' }
 }
 
 dependencies {
-    compileOnly "io.papermc.paper:paper-api:1.20.2-R0.1-SNAPSHOT"
+    compileOnly "io.papermc.paper:paper-api:1.21.4-R0.1-SNAPSHOT"
 
     //compileOnly("com.sk89q.worldedit:worldedit-core:7.3.0")
     //compileOnly("com.sk89q.worldedit:worldedit-bukkit:7.3.0")
 
-    implementation(platform("com.intellectualsites.bom:bom-newest:1.44"))
-    compileOnly("com.fastasyncworldedit:FastAsyncWorldEdit-Core")
-    compileOnly("com.fastasyncworldedit:FastAsyncWorldEdit-Bukkit") { transitive = false }
+    implementation(platform("com.intellectualsites.bom:bom-newest:1.52"))
+    compileOnly("com.fastasyncworldedit:FastAsyncWorldEdit-Core:2.13.0")
+    compileOnly("com.fastasyncworldedit:FastAsyncWorldEdit-Bukkit:2.13.0") { transitive = false }
 
-    compileOnly 'com.github.LoneDev6:API-ItemsAdder:3.6.3-beta-14'
+    compileOnly 'dev.lone:api-itemsadder:4.0.10'
+
+    implementation "org.bstats:bstats-bukkit:3.0.2"
 }
 
-def targetJavaVersion = 17
+shadowJar {
+    relocate("org.bstats", "com.epicplayera10.iaedit.libs.org.bstats")
+}
+
+assemble.dependsOn(shadowJar)
+
+def targetJavaVersion = 21
 java {
     def javaVersion = JavaVersion.toVersion(targetJavaVersion)
     sourceCompatibility = javaVersion

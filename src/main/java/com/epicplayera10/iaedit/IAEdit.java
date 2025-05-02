@@ -4,6 +4,7 @@ import com.epicplayera10.iaedit.hook.CustomBlocksFactory;
 import com.epicplayera10.iaedit.hook.listener.WorldEditListener;
 import com.epicplayera10.iaedit.listeners.ItemsAdderListener;
 import com.sk89q.worldedit.WorldEdit;
+import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.event.Listener;
@@ -16,6 +17,8 @@ public final class IAEdit extends JavaPlugin implements CommandExecutor, Listene
 
     public void onEnable() {
         instance = this;
+
+        setupMetrics();
 
         isFaweEnabled = Bukkit.getPluginManager().isPluginEnabled("FastAsyncWorldEdit");
         if (isFaweEnabled) {
@@ -34,5 +37,10 @@ public final class IAEdit extends JavaPlugin implements CommandExecutor, Listene
 
     public boolean isFaweEnabled() {
         return isFaweEnabled;
+    }
+
+    private void setupMetrics() {
+        int pluginId = 25717;
+        Metrics metrics = new Metrics(this, pluginId);
     }
 }
