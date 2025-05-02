@@ -42,6 +42,8 @@ dependencies {
 }
 
 shadowJar {
+    archiveFileName = "${project.name}-${project.version}.jar"
+
     relocate("org.bstats", "com.epicplayera10.iaedit.libs.org.bstats")
 }
 
