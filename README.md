@@ -6,3 +6,9 @@ There is already a plugin called [ItemsAdderWorldEdit](https://www.spigotmc.org/
 ## What this plugin fixes from [ItemsAdderWorldEdit](https://www.spigotmc.org/resources/addon-itemsadder-worldedit.79012/)
 - Adds compatibility with the latest version of FAWE
 - Now it can place and remove custom blocks everywhere in WorldEdit for example in commands, clipboard and schematics. Just everywhere you can imagine in WorldEdit
+
+## Troubleshooting
+
+### When I `//copy` and `//paste`, then furniture won't be copied
+You need to copy with `-e` flag like so `//copy -e` and paste with this flag `//paste -e`. This is because furniture are entities and using `-e` flag we are telling worldedit to also copy entities.
+
