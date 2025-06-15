@@ -74,7 +74,13 @@ public class FaweCustomBlocksProcessor implements IBatchProcessor {
     }
 
     @Override
+    @SuppressWarnings("removal")
     public ProcessorScope getScope() {
-        return ProcessorScope.READING_BLOCKS;
+        try {
+            return ProcessorScope.READING_BLOCKS;
+        } catch (NoSuchFieldError ex) {
+            // Fallback for older versions of FAWE
+            return ProcessorScope.READING_SET_BLOCKS;
+        }
     }
 }
